@@ -1,0 +1,37 @@
+# Python caches and local environments
+__pycache__/
+*.py[cod]
+*$py.class
+.venv/
+.venv-export/
+venv/
+
+# Build, package, and test output
+build/
+dist/
+*.deb
+.coverage
+coverage.xml
+htmlcov/
+.pytest_cache/
+
+# Downloaded models and generated media
+models/
+generated/
+
+# Local audio fixtures may contain copyrighted material
+test/
+
+# Local configuration and credentials
+config.json
+.env
+.env.*
+!.env.example
+
+# Editors and operating systems
+.idea/
+.vscode/
+.DS_Store
+Thumbs.db
+*.swp
+*~

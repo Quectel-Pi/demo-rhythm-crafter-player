@@ -1,0 +1,15 @@
+[Desktop Entry]
+Type=Application
+Name=Rhythm Crafter Player
+Name[en]=Rhythm Crafter Player
+GenericName=音乐播放器
+GenericName[en]=Music Player
+Comment=本地音乐播放器，支持实时趣味音效
+Comment[en]=Local music player with real-time sound effects
+Exec=wave-music
+Icon=wave-music
+Terminal=false
+Categories=AudioVideo;Audio;Player;
+Keywords=music;player;audio;音乐;播放器;
+StartupNotify=true
+StartupWMClass=wave-music

@@ -1,0 +1,308 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Rhythm Crafter Player</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <svg class="sprite" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+    <symbol id="i-logo" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10" fill="none" stroke="currentColor" stroke-width="2"/><path d="M13.5 6.5v7.2a2.6 2.6 0 1 1-1.6-2.4V6.5h1.6Zm0 0c1.4 0 3 .8 3.4 2.4" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></symbol>
+    <symbol id="i-play" viewBox="0 0 24 24"><path d="M8 5.5v13a1 1 0 0 0 1.5.86l10.4-6.5a1 1 0 0 0 0-1.72L9.5 4.64A1 1 0 0 0 8 5.5Z" fill="currentColor"/></symbol>
+    <symbol id="i-pause" viewBox="0 0 24 24"><rect x="6.5" y="5" width="3.6" height="14" rx="1.2" fill="currentColor"/><rect x="13.9" y="5" width="3.6" height="14" rx="1.2" fill="currentColor"/></symbol>
+    <symbol id="i-prev" viewBox="0 0 24 24"><path d="M18 6.3v11.4a.9.9 0 0 1-1.4.75L8.4 12.75a.9.9 0 0 1 0-1.5l8.2-5.7A.9.9 0 0 1 18 6.3Z" fill="currentColor"/><rect x="5.5" y="5.5" width="2" height="13" rx="1" fill="currentColor"/></symbol>
+    <symbol id="i-next" viewBox="0 0 24 24"><path d="M6 6.3v11.4a.9.9 0 0 0 1.4.75l8.2-5.7a.9.9 0 0 0 0-1.5l-8.2-5.7A.9.9 0 0 0 6 6.3Z" fill="currentColor"/><rect x="16.5" y="5.5" width="2" height="13" rx="1" fill="currentColor"/></symbol>
+    <symbol id="i-shuffle" viewBox="0 0 24 24"><path d="M3 7h3.5c2 0 3.2 1 4.3 2.6l2.4 4.8c1 1.6 2.3 2.6 4.3 2.6H20M3 17h3.5c1.5 0 2.5-.6 3.4-1.6M13.6 8.6c.9-1 1.9-1.6 3.4-1.6H20M17.5 4.5 20 7l-2.5 2.5M17.5 14.5 20 17l-2.5 2.5" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+    <symbol id="i-loop" viewBox="0 0 24 24"><path d="M4 11V9.5A3.5 3.5 0 0 1 7.5 6H19m-3-3 3 3-3 3M20 13v1.5a3.5 3.5 0 0 1-3.5 3.5H5m3 3-3-3 3-3" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+    <symbol id="i-loop-one" viewBox="0 0 24 24"><path d="M4 11V9.5A3.5 3.5 0 0 1 7.5 6H19m-3-3 3 3-3 3M20 13v1.5a3.5 3.5 0 0 1-3.5 3.5H5m3 3-3-3 3-3" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/><path d="M11.2 10.6 12.6 9.8v4.6" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+    <symbol id="i-volume" viewBox="0 0 24 24"><path d="M4 9.5v5h3.5L12 18.5v-13L7.5 9.5H4Z" fill="currentColor"/><path d="M15.5 9a4.2 4.2 0 0 1 0 6M18 6.5a7.8 7.8 0 0 1 0 11" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></symbol>
+    <symbol id="i-mute" viewBox="0 0 24 24"><path d="M4 9.5v5h3.5L12 18.5v-13L7.5 9.5H4Z" fill="currentColor"/><path d="m15.5 9.5 5 5m0-5-5 5" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></symbol>
+    <symbol id="i-search" viewBox="0 0 24 24"><circle cx="11" cy="11" r="6.5" fill="none" stroke="currentColor" stroke-width="1.8"/><path d="m16 16 4 4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></symbol>
+    <symbol id="i-plus" viewBox="0 0 24 24"><path d="M12 5v14M5 12h14" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></symbol>
+    <symbol id="i-music" viewBox="0 0 24 24"><path d="M9 17.5V6.2l10-2v11.3" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"/><circle cx="6.6" cy="17.5" r="2.4" fill="none" stroke="currentColor" stroke-width="1.7"/><circle cx="16.6" cy="15.5" r="2.4" fill="none" stroke="currentColor" stroke-width="1.7"/></symbol>
+    <symbol id="i-disc" viewBox="0 0 24 24"><circle cx="12" cy="12" r="8.5" fill="none" stroke="currentColor" stroke-width="1.7"/><circle cx="12" cy="12" r="2.6" fill="none" stroke="currentColor" stroke-width="1.7"/><path d="M12 6.3a5.7 5.7 0 0 0-5.7 5.7" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"/></symbol>
+    <symbol id="i-wand" viewBox="0 0 24 24"><path d="M4 20 15 9m-1.5-1.5 3 3M17 3v3m-1.5-1.5h3M20 9v2.5m-1.25-1.25h2.5M10 3.5v2m-1-1h2" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/></symbol>
+    <symbol id="i-list" viewBox="0 0 24 24"><path d="M4 6.5h12M4 11.5h12M4 16.5h7M16.5 14.5v5m-2.5-2.5h5" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/></symbol>
+    <symbol id="i-left" viewBox="0 0 24 24"><path d="m14.5 6-6 6 6 6" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+    <symbol id="i-right" viewBox="0 0 24 24"><path d="m9.5 6 6 6-6 6" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+    <symbol id="i-down" viewBox="0 0 24 24"><path d="m6 9.5 6 6 6-6" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+    <symbol id="i-speaker" viewBox="0 0 24 24"><path d="M4 9.5v5h3.5L12 18.5v-13L7.5 9.5H4Z" fill="currentColor"/><path d="M15.5 9a4.2 4.2 0 0 1 0 6" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></symbol>
+    <symbol id="i-folder" viewBox="0 0 24 24"><path d="M3.5 7.5a2 2 0 0 1 2-2h4l2 2h7a2 2 0 0 1 2 2v7.5a2 2 0 0 1-2 2h-13a2 2 0 0 1-2-2V7.5Z" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/></symbol>
+    <symbol id="i-split" viewBox="0 0 24 24"><path d="M4 12h4l2-5 4 10 2-5h4" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+    <symbol id="i-mic" viewBox="0 0 24 24"><rect x="9" y="3.5" width="6" height="11" rx="3" fill="none" stroke="currentColor" stroke-width="1.7"/><path d="M6 11.5a6 6 0 0 0 12 0M12 17.5V21" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/></symbol>
+    <symbol id="i-close" viewBox="0 0 24 24"><path d="m7 7 10 10M17 7 7 17" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/></symbol>
+    <symbol id="i-sparkle" viewBox="0 0 24 24"><path d="M10 3.5 11.6 8a3 3 0 0 0 1.9 1.9L18 11.5l-4.5 1.6a3 3 0 0 0-1.9 1.9L10 19.5l-1.6-4.5a3 3 0 0 0-1.9-1.9L2 11.5l4.5-1.6A3 3 0 0 0 8.4 8L10 3.5ZM18.5 2.5l.7 1.8 1.8.7-1.8.7-.7 1.8-.7-1.8-1.8-.7 1.8-.7.7-1.8Z" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/></symbol>
+    <symbol id="i-refresh" viewBox="0 0 24 24"><path d="M19.5 12a7.5 7.5 0 1 1-2.2-5.3M19.5 4.5v4h-4" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+    <symbol id="i-trash" viewBox="0 0 24 24"><path d="M5 7h14M10 4h4M7 7l.8 12a1 1 0 0 0 1 1h6.4a1 1 0 0 0 1-1L17 7" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+  </svg>
+
+  <header class="topbar">
+    <div class="logo"><span class="logo-mark"><svg><use href="#i-logo"/></svg></span><span class="logo-text">Rhythm Crafter Player</span></div>
+    <div class="history">
+      <button id="backBtn" class="round-btn" title="Back" aria-label="Back" disabled><svg><use href="#i-left"/></svg></button>
+      <button id="forwardBtn" class="round-btn" title="Forward" aria-label="Forward" disabled><svg><use href="#i-right"/></svg></button>
+    </div>
+    <label class="top-search"><svg><use href="#i-search"/></svg><input id="searchInput" type="search" placeholder="Search local music"></label>
+    <div class="top-right"><button id="langToggle" class="round-btn lang-btn" title="Switch language" aria-label="Switch language">EN</button><span id="clock" class="clock">--:--</span></div>
+  </header>
+
+  <div class="layout">
+    <aside class="sidebar">
+      <nav class="nav" aria-label="Main navigation">
+        <div class="side-title">My Music</div>
+        <button class="nav-item active" data-view="library"><svg><use href="#i-music"/></svg><span>Local Music</span><em id="sideTrackCount">0</em></button>
+        <button class="nav-item" data-view="player"><svg><use href="#i-disc"/></svg><span>Now Playing</span></button>
+        <button class="nav-item" data-view="effects"><svg><use href="#i-wand"/></svg><span>Sound Lab</span></button>
+        <button class="nav-item" data-view="compose"><svg><use href="#i-sparkle"/></svg><span>AI Compose</span><em id="sideBgmCount"></em></button>
+        <div class="side-title with-action">My Playlists<button id="createPlaylistBtn" class="side-add" title="New playlist" aria-label="New playlist"><svg><use href="#i-plus"/></svg></button></div>
+        <div id="playlistNav"></div>
+      </nav>
+    </aside>
+
+    <main class="main">
+      <!-- 本地音乐 -->
+      <section id="view-library" class="view active">
+        <div class="list-header">
+          <div class="list-cover"><svg><use href="#i-music"/></svg></div>
+          <div class="list-meta">
+            <div class="list-title"><span class="tag-red">Playlist</span><h1>Local Library</h1></div>
+            <div class="list-creator"><span class="avatar">Me</span><span>Local user</span><small>Library saved automatically · Audio and AI processing run entirely on this device</small></div>
+            <div class="list-actions">
+              <button id="playAllBtn" class="btn btn-red"><svg><use href="#i-play"/></svg>Play All</button>
+              <button id="addFilesBtn" class="btn btn-ghost"><svg><use href="#i-plus"/></svg>Add Music</button>
+              <button id="addFolderBtn" class="btn btn-ghost"><svg><use href="#i-folder"/></svg>Add Folder</button>
+              <button id="clearBtn" class="btn btn-ghost"><svg><use href="#i-trash"/></svg>Clear List</button>
+            </div>
+            <div class="list-stats">Songs: <b id="libraryCount">0</b><span class="divider"></span>Total duration: <b id="totalDuration">00:00</b></div>
+          </div>
+        </div>
+        <div class="tabs"><span class="tab active">Songs</span></div>
+        <div class="table-head"><span></span><span>Title</span><span>Artist</span><span>Format</span><span>Duration</span><span>AI Split</span><span></span></div>
+        <div id="trackList" class="track-list">
+          <div id="emptyState" class="empty-state">
+            <div class="empty-icon"><svg><use href="#i-music"/></svg></div>
+            <strong>No local music yet</strong>
+            <span>Add audio files or a whole folder, or drag files into the window</span>
+            <button id="emptyAddBtn" class="btn btn-red">Choose Audio Files</button>
+          </div>
+        </div>
+      </section>
+
+      <!-- 自建歌单 -->
+      <section id="view-playlist" class="view">
+        <div class="list-header">
+          <div class="list-cover playlist-cover"><svg><use href="#i-list"/></svg></div>
+          <div class="list-meta">
+            <div class="list-title"><span class="tag-red">Playlist</span><h1 id="playlistName">Playlist</h1></div>
+            <div class="list-creator"><span class="avatar">Me</span><span>Local user</span><small id="playlistCreated"></small></div>
+            <div class="list-actions">
+              <button id="plPlayAll" class="btn btn-red"><svg><use href="#i-play"/></svg>Play All</button>
+              <button id="plRename" class="btn btn-ghost"><svg><use href="#i-wand"/></svg>Rename</button>
+              <button id="plDelete" class="btn btn-ghost"><svg><use href="#i-trash"/></svg>Delete Playlist</button>
+            </div>
+            <div class="list-stats">Songs: <b id="playlistCount">0</b><span class="divider"></span>Total duration: <b id="playlistDuration">00:00</b></div>
+          </div>
+        </div>
+        <div class="tabs"><span class="tab active">Songs</span></div>
+        <div class="table-head"><span></span><span>Title</span><span>Artist</span><span>Format</span><span>Duration</span><span></span><span></span></div>
+        <div id="playlistTracks" class="track-list"></div>
+        <div id="playlistEmpty" class="empty-state">
+          <div class="empty-icon"><svg><use href="#i-list"/></svg></div>
+          <strong>This playlist is empty</strong>
+          <span>In Local Music, click + next to a song to add it to this playlist</span>
+        </div>
+      </section>
+
+      <!-- 正在播放 -->
+      <section id="view-player" class="view">
+        <div class="np">
+          <div class="disc-area">
+            <svg class="needle" viewBox="0 0 120 190" aria-hidden="true">
+              <circle cx="22" cy="22" r="17" fill="#e8e8e8" stroke="#cfcfcf" stroke-width="2"/>
+              <circle cx="22" cy="22" r="7" fill="#bdbdbd"/>
+              <path d="M22 22 L40 120 L72 160" fill="none" stroke="#d6d6d6" stroke-width="7" stroke-linecap="round" stroke-linejoin="round"/>
+              <path d="M22 22 L40 120 L72 160" fill="none" stroke="#f4f4f4" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+              <rect x="60" y="152" width="34" height="20" rx="3" transform="rotate(38 77 162)" fill="#c9c9c9"/>
+            </svg>
+            <div class="disc-ring">
+              <div id="disc" class="disc"><div id="coverArt" class="cover"><svg><use href="#i-music"/></svg></div></div>
+            </div>
+          </div>
+          <div class="np-info">
+            <h2 id="trackTitle">Nothing playing</h2>
+            <div class="np-meta">
+              <span>Artist: <a id="trackArtist">—</a></span>
+              <span>Format: <a id="formatLabel">—</a></span>
+              <span>Source: <a id="bitrateLabel">Local Music</a></span>
+            </div>
+            <div class="lyric-box">
+              <pre id="lyricsText" class="lyrics-text" hidden></pre>
+              <p id="lyricHint" class="lyric-hint">No lyrics for local music</p>
+              <p id="npEffect" class="lyric-current">Current effect · Original</p>
+              <p id="npMode" class="lyric-mode"></p>
+              <canvas id="visualizer" aria-label="Audio spectrum"></canvas>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- 音效实验室 -->
+      <section id="view-effects" class="view">
+        <div class="page-title"><h1>Sound Lab</h1></div>
+
+        <div id="stemsPanel" class="card stems-card">
+          <div class="stems-head">
+            <div class="stems-icon"><svg><use href="#i-mic"/></svg></div>
+            <div class="stems-title"><b>AI Vocal Split · Karaoke Mode</b><small id="stemsSubtitle">Split a song into vocals and accompaniment, then apply effects to the vocals only</small></div>
+            <span id="aiState" class="ai-state" hidden>Checking…</span>
+          </div>
+          <div class="stems-status">
+            <div class="stems-track"><span>Current song</span><b id="stemsTrack">No song selected</b></div>
+            <div id="stemsProgress" class="stems-progress" hidden><div class="bar"><i id="stemsBar"></i></div><span id="stemsPercent">0%</span></div>
+            <div class="stems-actions">
+              <button id="stemsRun" class="btn btn-red small"><svg><use href="#i-split"/></svg><span>Start Split</span></button>
+              <button id="stemsCancel" class="btn btn-ghost small" hidden>Cancel</button>
+              <button id="stemsDelete" class="btn btn-ghost small" hidden>Delete Split Tracks</button>
+            </div>
+          </div>
+          <div id="stemsControls" class="stems-controls">
+            <div class="control-row">
+              <span class="control-label">Playback source</span>
+              <div class="segmented" id="sourceSeg"><button data-value="original" class="on">Original</button><button data-value="stems">Split tracks</button></div>
+            </div>
+            <div class="control-row">
+              <span class="control-label">Quick modes</span>
+              <div class="chips">
+                <button class="chip" data-preset="karaoke">Karaoke</button>
+                <button class="chip" data-preset="vocalfx">Vocals FX</button>
+                <button class="chip" data-preset="bgmfx">Backing FX</button>
+                <button class="chip" data-preset="acapella">A cappella</button>
+              </div>
+            </div>
+            <div class="control-row">
+              <span class="control-label">Apply effect to</span>
+              <div class="segmented" id="targetSeg"><button data-value="all" class="on">Whole song</button><button data-value="vocals">Vocals only</button><button data-value="accompaniment">Backing only</button></div>
+            </div>
+            <div class="control-row">
+              <span class="control-label">Vocal volume</span>
+              <input id="vocalGain" class="slider" type="range" min="0" max="1.5" step="0.01" value="1"><b id="vocalGainValue" class="gain-value">100%</b>
+            </div>
+            <div class="control-row">
+              <span class="control-label">Backing volume</span>
+              <input id="accGain" class="slider" type="range" min="0" max="1.5" step="0.01" value="1"><b id="accGainValue" class="gain-value">100%</b>
+            </div>
+          </div>
+        </div>
+
+        <h3 class="section-title">Fun Effects</h3>
+        <div class="effect-grid" role="group" aria-label="Choose an effect">
+          <button class="effect-card selected" data-effect="clean"><span class="fx-art fx-clean"><svg><use href="#i-music"/></svg></span><b>Original</b><small>No processing, just the original sound</small></button>
+          <button class="effect-card" data-effect="glitch"><span class="fx-art fx-glitch"><svg><use href="#i-wand"/></svg></span><b>Glitch Radio</b><small>Distortion and crackle like an old radio</small></button>
+          <button class="effect-card" data-effect="demon"><span class="fx-art fx-demon"><svg><use href="#i-speaker"/></svg></span><b>Abyss Whisper</b><small>A deep, heavy monster voice</small></button>
+          <button class="effect-card" data-effect="echo"><span class="fx-art fx-echo"><svg><use href="#i-disc"/></svg></span><b>Canyon Echo</b><small>Layered echoes in an empty valley</small></button>
+        </div>
+        <div class="card tune-card">
+          <div class="tune-label"><span>Speed / Pitch</span><b id="speedValue">1.00×</b></div>
+          <input id="speedSlider" class="slider" type="range" min="0.7" max="1.3" value="1" step="0.01">
+          <div class="range-labels"><span>Deep 0.70×</span><span>Normal</span><span>Sharp 1.30×</span></div>
+          <button id="speedReset" class="btn btn-ghost small">Reset Speed</button>
+        </div>
+      </section>
+
+      <!-- AI 作曲 -->
+      <section id="view-compose" class="view">
+        <div class="page-title"><h1>AI Compose</h1><span>Turn one sentence into a short instrumental piece, or a full cloud song with vocals</span></div>
+
+        <div class="card compose-card">
+          <div class="compose-head">
+            <div class="stems-icon"><svg><use href="#i-sparkle"/></svg></div>
+            <div class="stems-title"><b>Describe the music you want</b><small>Include style, mood, instruments and tempo. Chinese works too</small></div>
+            <span id="bgmState" class="ai-state" hidden>Checking…</span>
+          </div>
+          <div class="control-row top">
+            <span class="control-label">Mode</span>
+            <div class="segmented" id="composeMode">
+              <button data-value="local" class="on">Local instrumental</button>
+              <button data-value="cloud">Cloud song (vocals)</button>
+            </div>
+          </div>
+          <div id="cloudNotice" class="translation" hidden>
+            <span class="translation-label">Cloud mode</span><b>Sends your description to a cloud service over the internet to generate a full song with AI-written lyrics and vocals. Usage is billed by the cloud provider.</b>
+          </div>
+          <textarea id="bgmPrompt" class="compose-input" maxlength="300" rows="3"
+                    placeholder="e.g. rainy day nostalgia, piano, slow tempo (Chinese is translated to English automatically; Ctrl+Enter to generate)"></textarea>
+          <div id="bgmTranslation" class="translation" hidden>
+            <span class="translation-label">Model will receive</span><b id="bgmEnglish">Translating…</b>
+            <button id="bgmUseEnglish" class="link-btn" hidden title="Put the English translation into the input box so you can keep editing">Edit in English</button>
+          </div>
+          <div class="control-row top">
+            <span class="control-label">Try these</span>
+            <div class="chips" id="bgmExamples">
+              <button class="chip">Lazy jazz bar, electric piano and saxophone</button>
+              <button class="chip">Cyberpunk electronic music, synthesizer</button>
+            </div>
+          </div>
+          <div class="control-row" id="bgmDurationRow">
+            <span class="control-label">Length</span>
+            <div class="segmented" id="bgmDuration">
+              <button data-value="4">4 s</button><button data-value="8" class="on">8 s</button>
+            </div>
+          </div>
+          <div class="compose-footer">
+            <div class="bgm-preview"><span>Note</span><b id="bgmPreview">About 11 s to generate</b></div>
+            <div id="bgmProgress" class="stems-progress" hidden><div class="bar"><i id="bgmBar"></i></div><span id="bgmPercent">0%</span></div>
+            <button id="bgmCancel" class="btn btn-ghost small" hidden>Cancel</button>
+            <button id="bgmGenerate" class="btn btn-red"><svg><use href="#i-sparkle"/></svg><span>Generate</span></button>
+          </div>
+        </div>
+
+        <h3 class="section-title">My Creations <small id="bgmCount" class="section-sub"></small></h3>
+        <div id="bgmList" class="bgm-list"></div>
+      </section>
+    </main>
+  </div>
+
+  <!-- 底部播放栏 -->
+  <footer class="playbar">
+    <div class="pb-left">
+      <button id="miniCover" class="mini-cover" title="Open Now Playing" aria-label="Open Now Playing"><svg><use href="#i-music"/></svg></button>
+      <div class="pb-text"><div id="miniTitle" class="pb-title">Rhythm Crafter Player</div><div id="miniArtist" class="pb-artist">Hear music differently</div></div>
+    </div>
+    <div class="pb-center">
+      <div class="transport">
+        <button id="shuffleBtn" class="ctrl" title="Shuffle" aria-label="Shuffle"><svg><use href="#i-shuffle"/></svg></button>
+        <button id="prevBtn" class="ctrl" title="Previous" aria-label="Previous"><svg><use href="#i-prev"/></svg></button>
+        <button id="playBtn" class="play-btn" title="Play" aria-label="Play"><svg><use href="#i-play"/></svg></button>
+        <button id="nextBtn" class="ctrl" title="Next" aria-label="Next"><svg><use href="#i-next"/></svg></button>
+        <button id="repeatBtn" class="ctrl" title="Repeat all" aria-label="Repeat all"><svg><use href="#i-loop"/></svg></button>
+      </div>
+      <div class="progress"><span id="currentTime">00:00</span><input id="seekBar" class="slider seek" type="range" min="0" max="1000" value="0" aria-label="Playback position"><span id="duration">00:00</span></div>
+    </div>
+    <div class="pb-right">
+      <button id="stemBadge" class="fx-badge" title="AI vocal split" hidden>Split tracks</button>
+      <button id="fxBadge" class="fx-badge" title="Sound Lab">Original</button>
+      <button id="muteBtn" class="ctrl" title="Mute" aria-label="Mute"><svg><use href="#i-volume"/></svg></button>
+      <input id="volumeSlider" class="slider volume" type="range" min="0" max="1" value="0.75" step="0.01" aria-label="Volume">
+      <span id="volumeValue" class="volume-value">75</span>
+    </div>
+  </footer>
+
+  <div id="toast" class="toast" hidden></div>
+  <!-- 加入歌单菜单 -->
+  <div id="playlistMenu" class="popup-menu" hidden></div>
+
+  <!-- 自绘确认框：WebKitGTK 自带的 confirm() 关闭后会让网页脚本卡住约 4.5 秒 -->
+  <div id="confirmDialog" class="modal" hidden>
+    <div class="modal-box" role="dialog" aria-modal="true" aria-labelledby="confirmMessage">
+      <p id="confirmMessage"></p>
+      <input id="confirmInput" class="modal-input" type="text" maxlength="40" autocomplete="off" hidden>
+      <div class="modal-actions">
+        <button id="confirmCancel" class="btn btn-ghost small">Cancel</button>
+        <button id="confirmOk" class="btn btn-red small">OK</button>
+      </div>
+    </div>
+  </div>
+  <script src="app.js"></script>
+</body>
+</html>
